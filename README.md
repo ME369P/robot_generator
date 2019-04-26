@@ -41,21 +41,17 @@ roslaunch robot_generator simulation.launch
 ```
 
 ## Application demo
-Install key_teleop package to communicate with the robot through keyboard strokes.
-```
-sudo apt-get install key_teleop
-```
 Launch the simulation with your customized robot (only supports robots with revolute joints for now).
 ```
 roslaunch robot_generator simulation.launch
 ```
-Run key_teleop.
-```
-rosrun key_teleop key_teleop.py
-```
-run RRbot_IK_demo.py.
+On a new terminal, run RRbot_IK_demo.py.
 ```
 rosrun robot_generator RRbot_IK_demo.py
+```
+On a new terminal, run key_teleop.
+```
+rosrun robot_generator key_teleop.py
 ```
 On key_teleop window, try pressing arrow keys to control the robot end-effector on Gazebo.
 
