@@ -3,14 +3,26 @@
 - ME369P (Application Programming for Engineers)
 - Keya Ghonasgi, Mincheol Kim, Matthew Times
 
-# Prerequisites
-1) ROS
-2) Catkin
-
-# Instructions for running this ROS package:
+## Instructions for running this ROS package:
 
 1) Download this package into (your catkin workspace)/src folder.
-2) Go to (your catkin workspace). i.e. cd ~/catkin_ws
-3) Source the catkin workspace. i.e. source ./devel/setup.bash
-4) Call catkin_make.
-5) Run simulation.launch for default demo based on tutorials. i.e. roslaunch robot_generator simulation.launch
+2) Go to (your catkin workspace), call catkin_make and source the catkin workspace.
+```
+cd ~/catkin_ws
+catkin_make
+source ./devel/setup.bash
+```
+3) Run simulation.launch for default demo based on tutorials. 
+```
+roslaunch robot_generator simulation.launch
+```
+
+## Built With
+
+* [ROS](http://http://www.ros.org/) - robot operating system
+
+## Authors
+
+* **Keya Ghonasgi** - task delegation
+* **Mincheol Kim** - task delegation
+* **Matthew Times** - task delegation
