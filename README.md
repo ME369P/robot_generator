@@ -19,7 +19,7 @@ roslaunch robot_generator simulation.launch
 
 ## Built With
 
-* [ROS](http://http://www.ros.org/) - robot operating system
+* [ROS](http://www.ros.org/) - robot operating system
 
 ## Authors
 
