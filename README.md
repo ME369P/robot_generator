@@ -1,7 +1,7 @@
-# Final_Project
-Automation of process for simulating a variety of configurable robots in Gazebo
-ME369P (Application Programming for Engineers)
-Keya Ghonasgi, Mincheol Kim, Matthew Times
+# Final Project: robot_generator package
+- Automation of process for simulating a variety of configurable robots in Gazebo
+- ME369P (Application Programming for Engineers)
+- Keya Ghonasgi, Mincheol Kim, Matthew Times
 
 # Prerequisites
 1) ROS
