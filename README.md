@@ -45,7 +45,11 @@ Install key_teleop package to communicate with the robot through keyboard stroke
 ```
 sudo apt-get install key_teleop
 ```
-With the simulation running, run key_teleop.
+Launch the simulation with your customized robot (only supports robots with revolute joints for now).
+```
+roslaunch robot_generator simulation.launch
+```
+Run key_teleop.
 ```
 rosrun key_teleop key_teleop.py
 ```
@@ -58,6 +62,7 @@ On key_teleop window, try pressing arrow keys to control the robot end-effector 
 ## References
 * [ROS](http://www.ros.org/) - The robot operating system
 * [ET](https://docs.python.org/2/library/xml.etree.elementtree.html) - The ElementTree XML API
+* [Gazebo](http://gazebosim.org/) - Gazebo simulator
 
 ## Authors
 * **Keya Ghonasgi** - task delegation
