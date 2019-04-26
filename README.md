@@ -6,6 +6,11 @@
 ## Instructions for running this ROS package:
 
 1) Download this package into (your catkin workspace)/src folder.
+```
+mkdir ~/catkin_ws/ ~/catkin_ws/src
+cd ~/catkin_ws/src
+git clone https://github.com/ME369P/robot_generator
+```
 2) Go to (your catkin workspace), call catkin_make and source the catkin workspace.
 ```
 cd ~/catkin_ws
