@@ -41,7 +41,7 @@ roslaunch robot_generator simulation.launch
 ```
 
 ## Application demo
-Launch the simulation with your customized robot (only supports robots with revolute joints for now).
+Launch the simulation with your customized robot with just revolute joints.
 ```
 roslaunch robot_generator simulation.launch
 ```
