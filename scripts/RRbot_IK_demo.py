@@ -32,7 +32,7 @@ def callback(key_vel):
 	J = np.append([J1],[J2],axis=0)
 
 	## Acquire velocity input from communication UI
-	scale = 100
+	scale = 10
 	Vx_desired = key_vel.linear.x*scale
 	Vy_desired = -key_vel.angular.z*scale
 	V = np.array([Vx_desired, Vy_desired])	
