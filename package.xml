@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>robot_generator</name>
+  <version>0.0.0</version>
+  <description>The robot_generator package allows a user to easily build a robot and its controllers to track a trajectory in cartesian space</description>
+
+  <maintainer email="mtimes@utexas.edu">mtimes</maintainer>
+  <maintainer email="mincheol@utexas.edu">mincheol</maintainer>
+  <maintainer email="keya.ghonasgi@utexas.edu">keya</maintainer>
+
+  <license>BSD</license>
+
+
+  <!-- Url tags are optional, but multiple are allowed, one per tag -->
+  <!-- Optional attribute type can be: website, bugtracker, or repository -->
+  <!-- Example: -->
+  <!-- <url type="website">http://wiki.ros.org/robot_generator</url> -->
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>rospy</depend>
+  <depend>std_msgs</depend>
+<!--   <build_depend>roslaunch</build_depend>
+ --><!--   <build_depend>message_generation</build_depend>
+ --><!--   <build_depend>joint_state_publisher</build_depend>
+  <build_depend>robot_state_publisher</build_depend> -->
+<!--   <build_export_depend>message_runtime</build_export_depend>
+ -->  <build_export_depend>joint_state_publisher</build_export_depend>
+  <build_export_depend>robot_state_publisher</build_export_depend>
+  <build_export_depend>controller_manager</build_export_depend>
+  <build_export_depend>joint_state_controller</build_export_depend>
+  <build_export_depend>effort_controllers</build_export_depend>
+  <build_export_depend>gazebo_plugins</build_export_depend>
+  <build_export_depend>gazebo_ros</build_export_depend>
+  <build_export_depend>gazebo_ros_control</build_export_depend>
+  <build_export_depend>xacro</build_export_depend>
+<!--   <exec_depend>message_runtime</exec_depend>
+ -->  <exec_depend>joint_state_publisher</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>controller_manager</exec_depend>
+  <exec_depend>joint_state_controller</exec_depend>
+  <exec_depend>effort_controllers</exec_depend>
+  <exec_depend>gazebo_plugins</exec_depend>
+  <exec_depend>gazebo_ros</exec_depend>
+  <exec_depend>gazebo_ros_control</exec_depend>
+  <exec_depend>xacro</exec_depend>
+
+
+  <!-- The export tag contains other, unspecified, tags -->
+  <export>
+    <!-- Other tools can request additional information be placed here -->
+
+  </export>
+</package>
