@@ -354,7 +354,7 @@ class robot_class:
 
         finalString.append('  # Position Controllers')
 
-        for k in range(self.getLinkNo()):
+        for k in range(self.getLinkNo()-1):
             finalString.append('  joint{}_position_controller:'.format(k+1))
             finalString.append('    type: effort_controllers/JointPositionController')
             finalString.append('    joint: joint{}'.format(k+1))
@@ -365,6 +365,17 @@ class robot_class:
 
         abs_path = os.path.abspath('..')
         with open('{0}/config/{1}_robot_control.yaml'.format(abs_path,self.getID()),'w')\
+            as yaml_file:
+            yaml_file.write(finalString)
+    
+    def write_info(self):
+        finalString = ['{}_robot'.format(self.getID())]
+        finalString.append('{}'.format(self.getLinkLengths()))
+
+        finalString = '\n'.join(finalString)
+
+        abs_path = os.path.abspath('..')
+        with open('{0}/scripts/{1}_info.txt'.format(abs_path,self.getID()),'w')\
             as yaml_file:
             yaml_file.write(finalString)
 
@@ -405,7 +416,7 @@ class robot_class:
         self.write_xacro()
         self.write_gazebo()
         self.write_launch()
-
+        self.write_info()
 
 
 
@@ -465,7 +476,7 @@ class robot_class:
         link_lengths = self.getLinkLengths()
         link_lengths.insert(0,l_base)
         
-        for j_ctr in range(link_no):
+        for j_ctr in range(link_no-1):
             l_ctr = j_ctr + 1
 
             # Start link Elements
@@ -548,7 +559,6 @@ class robot_class:
             j_origin[j_ctr].set('xyz','0 0 {}'.format(link_lengths[l_ctr-1]))
             
             parent = child    # Updating parent to current link
-
 
         ID = self.getID()
         finalString = self.xml_space(root)

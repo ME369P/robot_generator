@@ -2,7 +2,7 @@
 <robot>
   <gazebo>
     <plugin filename="libgazebo_ros_control.so" name="gazebo_ros_control">
-      <robotNamespace>trial2_robot</robotNamespace>
+      <robotNamespace>mk_robot</robotNamespace>
       <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
     </plugin>
   </gazebo>
@@ -14,5 +14,8 @@
   </gazebo>
   <gazebo reference="link3">
     <material>Gazebo/Orange</material>
+  </gazebo>
+  <gazebo reference="link4">
+    <material>Gazebo/Black</material>
   </gazebo>
 </robot>

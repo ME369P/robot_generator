@@ -2,19 +2,20 @@
 
 import rospy
 import numpy as np
+from os.path import dirname, abspath
 from std_msgs.msg import Float64
 from geometry_msgs.msg import Twist
 from sensor_msgs.msg import JointState
-global Q, nJoints
+global Q, nJoints, real_name, L_in
 
 def callback(key_vel):
-    global Q, nJoints
-    ## Initiate publishers <FROM PARSER>
-    pub1 = rospy.Publisher('trial2_robot/joint1_position_controller/command', Float64, queue_size=10)
-    pub2 = rospy.Publisher('trial2_robot/joint2_position_controller/command', Float64, queue_size=10)
+    global Q, nJoints, real_name, L_in
+    ## Initiate publishers
+    pub = []
+    for i in range(nJoints):
+        pub.append(rospy.Publisher('{}/joint{}_position_controller/command'.format(real_name,i+1), Float64, queue_size=10))
 
     ## Set robot data
-    L_in = [1, 1] # link lengths <FROM PARSER>
     L = np.array([])
     for i in range(nJoints):
         L = np.append(L,L_in[i])
@@ -56,31 +57,49 @@ def callback(key_vel):
         if np.sqrt(qdot.dot(qdot)) > 5: qdot = qdot/np.sqrt(qdot.dot(qdot))*5
         q_new = Q + qdot*dt
     
-    ## Publish desired joint positions <FROM PARSER>
+    ## Publish desired joint positions
     Q = q_new
-    pub1.publish(float(q_new[0]))
-    pub2.publish(float(q_new[1]))
+    i = 0
+    for pubs in pub:
+        pubs.publish(float(q_new[i]))
+        i = i + 1
     
 
 def RRbot_control():
-    global Q, nJoints
-    nJoints = 2 # number of joints <FROM PARSER>
-
-    ## Initiate a node named RRbot_control
-    rospy.init_node('RRbot_control', anonymous=True)
-
-    ## Acquire current joint pose
-    Jointsdata = rospy.wait_for_message('trial2_robot/joint_states', JointState)
-    Q = np.array([])
-    for i in range(nJoints):
-        Q = np.append(Q,[Jointsdata.position[i]])
-
-    ## Initiate a subscriber to the key_teleop package
-    key_sub = rospy.Subscriber('key_vel', Twist, callback)
+    global Q, nJoints, real_name, L_in
     
-    ## Let it spin
-    rospy.spin()
-
+    try:
+        robot_name = str(input('Enter the name of the robot:'))
+        
+        line_list = []
+    
+        abs_path = dirname(abspath(__file__))
+        with open("{}/{}_info.txt".format(abs_path,robot_name)) as f:
+            for line in f:
+                line_list.append(line.rstrip('\n'))
+                
+            real_name = line_list[0]
+            L = line_list[1][4:-1].split(', ')
+            nJoints = len(L)
+            L_in = []
+            for i in range(nJoints):
+                L_in.append(float(L[i]))
+            
+        ## Initiate a node named RRbot_control
+        rospy.init_node('{}_control'.format(robot_name), anonymous=True)
+        ## Acquire current joint pose
+        Jointsdata = rospy.wait_for_message('{}/joint_states'.format(real_name), JointState)
+        Q = np.array([])
+        for i in range(nJoints):
+            Q = np.append(Q,[Jointsdata.position[i]])
+    
+        ## Initiate a subscriber to the key_teleop package
+        key_sub = rospy.Subscriber('key_vel', Twist, callback)
+        
+        ## Let it spin
+        rospy.spin()
+    except NameError:
+        print("Put ' ' around the robot name.")
 
 if __name__ == '__main__':
     try:
