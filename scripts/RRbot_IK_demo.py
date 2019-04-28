@@ -5,15 +5,13 @@ import numpy as np
 from std_msgs.msg import Float64
 from geometry_msgs.msg import Twist
 from sensor_msgs.msg import JointState
-global  nJoints
-# Q = np.array(0,0)
+global Q, nJoints
 
 def callback(key_vel):
-    global  nJoints
-    Q = np.array([0,0])
+    global Q, nJoints
     ## Initiate publishers <FROM PARSER>
-    pub1 = rospy.Publisher('rrbot/joint1_position_controller/command', Float64, queue_size=10)
-    pub2 = rospy.Publisher('rrbot/joint2_position_controller/command', Float64, queue_size=10)
+    pub1 = rospy.Publisher('trial2_robot/joint1_position_controller/command', Float64, queue_size=10)
+    pub2 = rospy.Publisher('trial2_robot/joint2_position_controller/command', Float64, queue_size=10)
 
     ## Set robot data
     L_in = [1, 1] # link lengths <FROM PARSER>
@@ -29,9 +27,9 @@ def callback(key_vel):
         for k in range(i,nJoints):
             X = X + L[k]*np.cos(sum(Q[0:k+1]))
             Y = Y + L[k]*np.sin(sum(Q[0:k+1]))
-            J1 = np.append(J1,[-Y])
-            J2 = np.append(J2,[X])
-            J = np.append([J1],[J2],axis=0)
+        J1 = np.append(J1,[-Y])
+        J2 = np.append(J2,[X])
+    J = np.append([J1],[J2],axis=0)
 
     ## Acquire velocity input from communication UI
     scale = 10
@@ -53,14 +51,16 @@ def callback(key_vel):
         Y = Y + L[i]*np.sin(sum(Q[0:i+1]))
 
     if np.hypot(X,Y) > sum(L)-0.01:
-        V = np.array([-X, -Y])
+        V = np.array([-X,-Y])
         qdot = np.linalg.pinv(J).dot(V)
+        if np.sqrt(qdot.dot(qdot)) > 5: qdot = qdot/np.sqrt(qdot.dot(qdot))*5
         q_new = Q + qdot*dt
-
+    
     ## Publish desired joint positions <FROM PARSER>
+    Q = q_new
     pub1.publish(float(q_new[0]))
     pub2.publish(float(q_new[1]))
-    Q = q_new
+    
 
 def RRbot_control():
     global Q, nJoints
@@ -69,15 +69,15 @@ def RRbot_control():
     ## Initiate a node named RRbot_control
     rospy.init_node('RRbot_control', anonymous=True)
 
-    ## Initiate a subscriber to the key_teleop package
-    key_sub = rospy.Subscriber('key_vel', Twist, callback)
-
     ## Acquire current joint pose
-    Jointsdata = rospy.wait_for_message('rrbot/joint_states', JointState)
+    Jointsdata = rospy.wait_for_message('trial2_robot/joint_states', JointState)
     Q = np.array([])
     for i in range(nJoints):
         Q = np.append(Q,[Jointsdata.position[i]])
 
+    ## Initiate a subscriber to the key_teleop package
+    key_sub = rospy.Subscriber('key_vel', Twist, callback)
+    
     ## Let it spin
     rospy.spin()
 
