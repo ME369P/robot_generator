@@ -18,7 +18,8 @@ def callback(key_vel):
     ## Set robot data
     L = np.array([])
     for i in range(nJoints):
-        L = np.append(L,L_in[i])
+        L = np.append(L,L_in[i]-0.1)
+    L[-1] += 0.05
 
     ## Calculate Jacobian
     J1 = np.array([])

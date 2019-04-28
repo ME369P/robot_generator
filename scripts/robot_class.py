@@ -272,8 +272,10 @@ class robot_class:
         mass_val = self.getDensity()*width*width*link_len
         if link_no == 0:
             orn_format = '0 {} {}'
-        else:
+        elif link_no == 1:
             orn_format = '0 {} ${{{} - axel_offset}}'
+        else:
+            orn_format = '0 {} ${{{} - 2*axel_offset}}'        
 
         joint = ET.SubElement(root,'joint')
         joint.set('name','joint{}'.format(link_no))
