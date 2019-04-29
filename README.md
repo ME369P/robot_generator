@@ -71,6 +71,7 @@ On key_teleop window, try pressing arrow keys to control the robot end-effector 
 * [ROS](http://www.ros.org/) - The robot operating system
 * [ET](https://docs.python.org/2/library/xml.etree.elementtree.html) - The ElementTree XML API
 * [Gazebo](http://gazebosim.org/) - Gazebo simulator
+* [key_Teleop](http://wiki.ros.org/key_teleop) - package that reads keyboard inputs from the user
 
 ## Authors
 * **Keya Ghonasgi**
