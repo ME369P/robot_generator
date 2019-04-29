@@ -29,25 +29,37 @@ catkin_make
 echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 ```
 
-
 ## Walk-through
-How to parse robots
+Run python in the scripts folder inside robot_generator package.
 ```
-how to parse robots
+cd ~/catkin_ws/src/robot_generator/scripts
+python
 ```
-Run simulation.launch to simulate the generated robot.
+Import robot_class and define a customized robot. Below is when you want to make a 2-DOF robot named "rrbot."
 ```
-roslaunch robot_generator simulation.launch
+from robot_class import robot_class as rc
+robot = rc('rrbot',2)
+```
+Enter link lengths and their density. Below is when you want each link to be length of 1 and density of 1.
+```
+Enter length of link #1: 1
+Enter length of link #2: 1
+Enter density of links: 1
+```
+Generate the robot.
+```
+robot.create_robot()
+```
+Exit python and run simulation.launch on command terminal to simulate the generated robot.
+```
+roslaunch robot_generator {robot name}_simulation.launch
 ```
 
-## Application demo
-Launch the simulation with your customized robot with just revolute joints.
-```
-roslaunch robot_generator simulation.launch
-```
-On a new terminal, run RRbot_IK_demo.py.
+## Application demo (supports only revolute joints at the moment)
+On a new terminal, run RRbot_IK_demo.py and enter the name of the robot.
 ```
 rosrun robot_generator RRbot_IK_demo.py
+Enter the name of the robot: 'rrbot'
 ```
 On a new terminal, run key_teleop.
 ```
@@ -61,6 +73,6 @@ On key_teleop window, try pressing arrow keys to control the robot end-effector 
 * [Gazebo](http://gazebosim.org/) - Gazebo simulator
 
 ## Authors
-* **Keya Ghonasgi** - task delegation
-* **Mincheol Kim** - task delegation
-* **Matthew Times** - task delegation
+* **Keya Ghonasgi**
+* **Mincheol Kim**
+* **Matthew Times**
