@@ -35,7 +35,7 @@ Run python in the scripts folder inside robot_generator package.
 $ cd ~/catkin_ws/src/robot_generator/scripts
 $ python3
 ```
-Import robot_class and define a customized robot. Below is when you want to make a 2-DOF robot named "Groot".
+Import robot_class and define a customized robot. Below is an example of a 2-DOF robot named "Groot".
 ```
 >>> from robot_class import robot_class as rc
 >>> robot = rc('Groot',2)
