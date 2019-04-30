@@ -11,34 +11,34 @@ This packages requires ROS and ros_control packages to run.
 [Check which ROS distribution is compatible with your version of Ubuntu.](http://wiki.ros.org/Distributions)
 For Ubuntu 18.04 (melodic):
 ```
-sudo apt-get install ros-melodic-gazebo-ros-pkgs ros-melodic-ros-control ros-melodic-ros-controllers
+$ sudo apt-get install ros-melodic-gazebo-ros-pkgs ros-melodic-ros-control ros-melodic-ros-controllers
 ```
 For other versions of Ubuntu, simply change 'melodic' to a compatible distribution.
 
 ## Installation
 Download this package into (your catkin workspace)/src folder.
 ```
-mkdir ~/catkin_ws/ ~/catkin_ws/src
-cd ~/catkin_ws/src
-git clone https://github.com/ME369P/robot_generator
+$ mkdir ~/catkin_ws/ ~/catkin_ws/src
+$ cd ~/catkin_ws/src
+$ git clone https://github.com/ME369P/robot_generator
 ```
 Go to (your catkin workspace), call catkin_make and source the catkin workspace.
 ```
-cd ~/catkin_ws
-catkin_make
-echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
+$ cd ~/catkin_ws
+$ catkin_make
+$ echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 ```
 
 ## Walk-through
 Run python in the scripts folder inside robot_generator package.
 ```
-cd ~/catkin_ws/src/robot_generator/scripts
-python3
+$ cd ~/catkin_ws/src/robot_generator/scripts
+$ python3
 ```
 Import robot_class and define a customized robot. Below is when you want to make a 2-DOF robot named "Groot".
 ```
-from robot_class import robot_class as rc
-robot = rc('Groot',2)
+>>> from robot_class import robot_class as rc
+>>> robot = rc('Groot',2)
 ```
 Enter link lengths and their density. Below is when you want each link to be length of 1 and density of 1.
 ```
@@ -48,15 +48,15 @@ Enter density of links: 1
 ```
 Generate the robot.
 ```
-robot.create_robot()
+>>> robot.create_robot()
 ```
-Exit python and run simulation.launch on command terminal to simulate the generated robot.
+In a different terminal, run simulation.launch on command terminal to simulate the generated robot.
 ```
-roslaunch robot_generator {robot name}_simulation.launch
+$ roslaunch robot_generator {robot name}_simulation.launch
 ```
-If you do not remember the name of the robot, call the method getID.
+If you do not remember the name of the robot, in the Python terminal, call the method getID.
 ```
-robot.getID()
+>>> robot.getID()
 'Groot'
 ```
 
@@ -65,12 +65,12 @@ You can also use tab completion to find all the launch files in the robot_genera
 ## Application demo (supports only revolute joints at the moment)
 In a new terminal, run IK_demo.py and enter the name of the robot.
 ```
-rosrun robot_generator IK_demo.py
+$ rosrun robot_generator IK_demo.py
 Enter the name of the robot: 'Groot'
 ```
 In a new terminal, run key_teleop.
 ```
-rosrun robot_generator key_teleop.py
+$ rosrun robot_generator key_teleop.py
 ```
 In the key_teleop window, try pressing arrow keys to control the robot end-effector on Gazebo.
 
