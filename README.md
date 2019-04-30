@@ -74,6 +74,6 @@ On key_teleop window, try pressing arrow keys to control the robot end-effector 
 * [key_Teleop](http://wiki.ros.org/key_teleop) - package that reads keyboard inputs from the user
 
 ## Authors
-* **Keya Ghonasgi**
-* **Mincheol Kim**
-* **Matthew Times**
+* **Keya Ghonasgi** - Robot generator script
+* **Mincheol Kim** - Teleoperation + Inverse kinematics application
+* **Matthew Times** - ROS integration
