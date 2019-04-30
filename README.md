@@ -33,12 +33,12 @@ echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 Run python in the scripts folder inside robot_generator package.
 ```
 cd ~/catkin_ws/src/robot_generator/scripts
-python
+python3
 ```
-Import robot_class and define a customized robot. Below is when you want to make a 2-DOF robot named "rrbot."
+Import robot_class and define a customized robot. Below is when you want to make a 2-DOF robot named "Groot".
 ```
 from robot_class import robot_class as rc
-robot = rc('rrbot',2)
+robot = rc('Groot',2)
 ```
 Enter link lengths and their density. Below is when you want each link to be length of 1 and density of 1.
 ```
@@ -54,18 +54,25 @@ Exit python and run simulation.launch on command terminal to simulate the genera
 ```
 roslaunch robot_generator {robot name}_simulation.launch
 ```
+If you do not remember the name of the robot, call the method getID.
+```
+robot.getID()
+'Groot'
+```
+
+You can also use tab completion to find all the launch files in the robot_generator directory.
 
 ## Application demo (supports only revolute joints at the moment)
-On a new terminal, run RRbot_IK_demo.py and enter the name of the robot.
+In a new terminal, run IK_demo.py and enter the name of the robot.
 ```
-rosrun robot_generator RRbot_IK_demo.py
-Enter the name of the robot: 'rrbot'
+rosrun robot_generator IK_demo.py
+Enter the name of the robot: 'Groot'
 ```
-On a new terminal, run key_teleop.
+In a new terminal, run key_teleop.
 ```
 rosrun robot_generator key_teleop.py
 ```
-On key_teleop window, try pressing arrow keys to control the robot end-effector on Gazebo.
+In the key_teleop window, try pressing arrow keys to control the robot end-effector on Gazebo.
 
 ## References
 * [ROS](http://www.ros.org/) - The robot operating system
