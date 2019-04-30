@@ -54,13 +54,12 @@ In a different terminal, run simulation.launch on command terminal to simulate t
 ```
 $ roslaunch robot_generator {robot name}_simulation.launch
 ```
-If you do not remember the name of the robot, in the Python terminal, call the method getID.
+
+You can use tab completion to find all the launch files in the robot_generator directory. If you do not remember the name of the robot, in the Python terminal, call the method getID.
 ```
 >>> robot.getID()
 'Groot'
 ```
-
-You can also use tab completion to find all the launch files in the robot_generator directory.
 
 ## Application demo (supports only revolute joints at the moment)
 In a new terminal, run IK_demo.py and enter the name of the robot.
