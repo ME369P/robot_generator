@@ -71,7 +71,7 @@ In a new terminal, run key_teleop.
 ```
 $ rosrun robot_generator key_teleop.py
 ```
-In the key_teleop window, try pressing arrow keys to control the robot end-effector on Gazebo.
+Use the arrow keys to control the robot end-effector on Gazebo. Make sure the key_teleop terminal is selected.
 
 ## References
 * [ROS](http://www.ros.org/) - The robot operating system
