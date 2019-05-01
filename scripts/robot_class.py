@@ -377,7 +377,7 @@ class robot_class:
         finalString = '\n'.join(finalString)
 
         abs_path = os.path.abspath('..')
-        with open('{0}/scripts/{1}_info.txt'.format(abs_path,self.getID()),'w')\
+        with open('{0}/urdf/{1}_root/{1}_info.txt'.format(abs_path,self.getID()),'w')\
             as yaml_file:
             yaml_file.write(finalString)
 
